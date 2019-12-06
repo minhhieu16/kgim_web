@@ -3,7 +3,7 @@
 
                     <h3 class="page-header">
                         <span>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNew">
+                            <button id="Add" type="button" class="btn btn-primary">
                             Add New
                             </button>
                         </span>
