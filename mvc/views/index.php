@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">KGIM</a>
+                <a class="navbar-brand" href="index">KGIM</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -58,7 +58,6 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        
                         <li>
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> VENUES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -79,9 +78,12 @@
 
         <div id="page-wrapper">
             <?php
-                include 'pages/'.$data["pages"].'.php';
+                include 'pages/'.$data["pages"].'.php'; 
             ?>
         </div>
+        <div class="col-lg-12 bg-basic footer">
+        <p align="center" style="margin-top: 20px;">© 2019 KGIM</p>
+    </div>
         <!-- /#page-wrapper -->
 
     </div>

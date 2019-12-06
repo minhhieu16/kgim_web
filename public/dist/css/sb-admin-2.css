@@ -437,3 +437,6 @@ table.dataTable thead .sorting:after {
     margin-top: 10px;
     background-color: #eeeeee;
 }
+.add {
+  padding-top: 10px;
+}
