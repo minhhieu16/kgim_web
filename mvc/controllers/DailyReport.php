@@ -11,8 +11,10 @@ class DailyReport extends Controller
     }
     public function index()
     {
+        $rep = $this->model("HomeModel");
         $this->view("index",[
-            "pages"=>"show"
+            "pages"=>"show",
+            "rep"=>$rep->Test()
         ]);
     }
 
