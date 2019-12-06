@@ -87,6 +87,16 @@
         <!-- /#page-wrapper -->
 
     </div>
+    <script>
+        $(document).ready(function(){
+            $("#Add").click(function(){
+                $.get("pages/addNew.php",function(data){
+                    $("#page-wrapper").html(data);
+                });
+            });
+        });
+    </script>
+
     <!-- /#wrapper -->
     <?php
         include 'pages/model.php';
