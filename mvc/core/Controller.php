@@ -10,5 +10,17 @@ class Controller{
         require_once "./mvc/views/".$view.".php";
     }
 
+    public function SessionProcess()
+    {
+        if(isset($_SESSION['ID']))
+        {
+            return true;
+            #echo '<script language="javascript">location.href="./../index.php";</script>';
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 ?>
