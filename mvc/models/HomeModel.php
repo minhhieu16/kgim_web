@@ -18,6 +18,38 @@ class HomeModel extends DB
         }
         return json_encode($arr);
     }
+    public function Add_Issue(){
+        $sql = "SELECT * FROM tbl_issue WHERE IsActive = 1 ORDER BY IssueName ASC";
+        $arr = array();
+        $row = mysqli_query($this->con,$sql);
+        while($rows = mysqli_fetch_array($row))
+        {
+            $arr[]= $rows;
+        }
+        return json_encode($arr);
+    }
+    public function Add_Status(){
+        $sql = "SELECT * FROM tbl_status";
+        $arr = array();
+        $row = mysqli_query($this->con,$sql);
+        while($rows = mysqli_fetch_array($row))
+        {
+            $arr[]= $rows;
+        }
+        return json_encode($arr);
+    }
+    public function Add_Level(){
+        $sql = "SELECT * FROM tbl_level";
+        $arr = array();
+        $row = mysqli_query($this->con,$sql);
+        while($rows = mysqli_fetch_array($row))
+        {
+            $arr[]= $rows;
+        }
+        return json_encode($arr);
+    }
+    
+
 }
 
 

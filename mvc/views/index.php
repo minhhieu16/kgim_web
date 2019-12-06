@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">KGIM</a>
+                <a class="navbar-brand" href="index">KGIM</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -46,7 +46,11 @@
                         <li><a href="#" data-toggle="modal" data-target="#changePassword"><i class="fa fa-gear fa-fw"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
+<<<<<<< HEAD
                         <li><a href="./../User/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+=======
+                        <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+>>>>>>> 7b802438be08848bf752c53a10c4497bfe2046ed
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -58,12 +62,11 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        
                         <li>
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> VENUES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Vegas Club</a>
+                                    <a href="">Vegas Club</a>
                                 </li>
                                 
                             </ul>
@@ -79,9 +82,12 @@
 
         <div id="page-wrapper">
             <?php
-                include 'pages/'.$data["pages"].'.php';
+                include 'pages/'.$data["pages"].'.php'; 
             ?>
         </div>
+        <div class="col-lg-12 bg-basic footer">
+        <p align="center" style="margin-top: 20px;">© 2019 KGIM</p>
+    </div>
         <!-- /#page-wrapper -->
 
     </div>

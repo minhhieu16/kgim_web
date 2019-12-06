@@ -3,16 +3,16 @@
 
         <h3 class="page-header">
             <span>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNew">
+                <a href="addNew"><button type="button"  class="btn btn-primary">
                 Add New
-                </button>
+                </button></a>
             </span>
             Vegas Caravelle Report - <span style="color: red"><?php echo $_SESSION['display_name']; ?></span></h3>
     </div>
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-                
+              
 <div class="row">
     <div  class="col-lg-12 table-responsive">
         <table id="example" class="display nowrap table" cellpadding="0" width="100%">
@@ -66,8 +66,6 @@
             </tbody>
         </table>
     </div>
-    <div class="col-lg-12 bg-basic footer">
-        <p align="center" style="margin-top: 20px;">© 2019 KGIM</p>
-    </div>
+    
 </div>
 <!-- /.row -->

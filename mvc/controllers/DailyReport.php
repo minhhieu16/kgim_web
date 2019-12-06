@@ -1,6 +1,7 @@
 <?php
 class DailyReport extends Controller 
 {
+    
     public function __construct ()
     {
         $checkUser = $this->SessionProcess();
@@ -15,6 +16,16 @@ class DailyReport extends Controller
         $this->view("index",[
             "pages"=>"show",
             "rep"=>$rep->Test()
+        ]);
+    }
+    public function addNew()
+    {
+        $add = $this->model("HomeModel");
+        $this->view("index",[
+            "pages"=>"addNew",
+            "issue"=>$add->Add_Issue(),
+            "status"=>$add->Add_Status(),
+            "level"=>$add->Add_Level()
         ]);
     }
 
