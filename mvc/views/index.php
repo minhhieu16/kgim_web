@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">KGIM</a>
+                <a class="navbar-brand" href="#">KGIM</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -46,7 +46,7 @@
                         <li><a href="#" data-toggle="modal" data-target="#changePassword"><i class="fa fa-gear fa-fw"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -63,7 +63,7 @@
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> VENUES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Vegas Club</a>
+                                    <a href="">Vegas Club</a>
                                 </li>
                                 
                             </ul>
