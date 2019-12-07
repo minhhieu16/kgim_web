@@ -131,6 +131,25 @@ class HomeModel extends DB
         }
         return json_encode($arr);
     }
+
+    public function getName($idUser)
+    {
+        $sql = "select DisplayName from tbl_employee where EmpID = $idUser";
+        $res = mysqli_query($this->con,$sql);
+        $arr = array();
+        if(mysqli_num_rows($res)>0)
+        {
+            while($row=  mysqli_fetch_assoc($res))
+            {
+                $arr[] = $row;
+                
+                
+            }
+            
+        }
+        return $arr;
+    }
+
     public function EditReportModel($data)
     {
         

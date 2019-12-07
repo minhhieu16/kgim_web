@@ -104,18 +104,28 @@ class DailyReport extends Controller
 
         public function Edit($id)
         {
-            $arr = array();
-            $this->view("index",[
-                "pages"=>"edit",
-                "OldReport"=>$this->rep->checkEdit($id),
-                "issue"=>$this->rep->Add_Issue(),
-                "status"=>$this->rep->Add_Status(),
-                "level"=>$this->rep->Add_Level(),
-                "shift"=>$this->rep->Add_Shift(),
-                "SessionIdReport" => $id
-            ]);
-        }
+            $arr =json_decode($this->rep->checkEdit($id));
+            
+            if($arr[0]->EmpID == $_SESSION['ID'])
+            {
+                $this->view("index",[
+                    "pages"=>"edit",
+                    "OldReport"=>$this->rep->checkEdit($id),
+                    "issue"=>$this->rep->Add_Issue(),
+                    "status"=>$this->rep->Add_Status(),
+                    "level"=>$this->rep->Add_Level(),
+                    "shift"=>$this->rep->Add_Shift(),
+                    "SessionIdReport" => $id
+                ]);
 
+            }
+            else {
+                $name = $this->rep->getName($arr[0]->EmpID);
+                echo "<script language='javascript'>alert('You can not edit report of ".$name[0]['DisplayName']." ');</script>";
+                echo '<script language="javascript">location.href="../index";</script>';
+            }
+        }
+        
         public function EditReport($idReport)
         {
             
