@@ -1,11 +1,11 @@
 <?php
 class DailyReport extends Controller 
 {
-    
+    public $checkUser;
     public function __construct ()
     {
-        $checkUser = $this->SessionProcess();
-        if(!$checkUser)
+        $this->checkUser = $this->SessionProcess();
+        if(!$this->checkUser)
         {
             echo '<script language="javascript">location.href="./../index.php";</script>';
         }
@@ -25,8 +25,8 @@ class DailyReport extends Controller
             "pages"=>"addNew",
             "issue"=>$add->Add_Issue(),
             "status"=>$add->Add_Status(),
-            "level"=>$add->Add_Level()
-        ]);
+            "level"=>$add->Add_Level()]);
+
     }
 
 }

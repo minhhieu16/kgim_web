@@ -2,10 +2,13 @@
 class User extends Controller 
 {
     public $us;
+    public $userChangePass;
 
     public function __construct()
     {
         $this->us = $this->model("UserModel");
+        
+        
     }
 
     function IndexLogin()
@@ -39,9 +42,28 @@ class User extends Controller
 
     public function ChangePass()
     {
-        if(isset($_POST['btnChangePass'])){
 
+        if($_POST['key']=='ChangePass')
+        {
+            if( $this->us->oldPasswordMatched($_POST['opassword']) ){
+                 if($this->us->UpdatePass($_POST['npassword']))
+                 {
+                     echo 'success';
+                 }
+                 else {
+                     echo 'failed';
+                 }
+            }
+            else {
+                echo 'failed';
+            }
         }
+        else {
+            echo 'failed';
+        }
+
+
+
     }
 
     public function Logout()

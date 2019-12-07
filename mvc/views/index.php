@@ -46,11 +46,7 @@
                         <li><a href="#" data-toggle="modal" data-target="#changePassword"><i class="fa fa-gear fa-fw"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
-<<<<<<< HEAD
                         <li><a href="./../User/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-=======
-                        <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
->>>>>>> 7b802438be08848bf752c53a10c4497bfe2046ed
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -91,15 +87,7 @@
         <!-- /#page-wrapper -->
 
     </div>
-    <script>
-        $(document).ready(function(){
-            $("#Add").click(function(){
-                $.get("pages/addNew.php",function(data){
-                    $("#page-wrapper").html(data);
-                });
-            });
-        });
-    </script>
+
 
     <!-- /#wrapper -->
     <?php

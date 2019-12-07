@@ -3,12 +3,11 @@
 
         <h3 class="page-header">
             <span>
-                <a href="addNew"><button type="button"  class="btn btn-primary">
-                Add New
-                </button></a>
+                <input type="button" id="addNew"  class="btn btn-primary" value="Add New">
             </span>
-            Vegas Caravelle Report - <span style="color: red"><?php echo $_SESSION['display_name']; ?></span></h3>
+            Vegas Caravelle Report - <span style="color: red"><?php echo $_SESSION['display_name'] ?></span></h3>
     </div>
+
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
