@@ -152,6 +152,7 @@ foreach ($a as $value) {
   
    
   <button type="submit" id="" class="btn btn-primary">Edit</button>
+  <a href="index.php" class="btn btn-danger" id="back">Back</a>
   <div  style="text-align: center;" id="notice"></div>
 </form>
     </div>
