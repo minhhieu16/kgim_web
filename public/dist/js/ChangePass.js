@@ -31,7 +31,7 @@ $(document).ready(function() {
                         $footer.html('<p style="color: green; text-align:center">Change successed!</p>');
 
                     }
-                    else
+                    else if(response=="failed")
                     {
                         $footer.html('<p style="color: red; text-align:center">Change failed!</p>');
                     }
@@ -43,7 +43,7 @@ $(document).ready(function() {
         }
         else
         {
-            alert(2);
+            $footer.html('<p style="color: red; text-align:center">New password and confirm password must macth!</p>');
         }
         // $.ajax({
         //     url: $form.attr('action'),

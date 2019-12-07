@@ -1,15 +1,9 @@
 
-<<<<<<< HEAD
-        <h3 class="page-header">
-            <span>
-                <input type="button" id="addNew"  class="btn btn-primary" value="Add New">
-            </span>
-            Vegas Caravelle Report - <span style="color: red"><?php echo $_SESSION['display_name'] ?></span></h3>
-=======
+
 <div class="row show">
     <div class="col-lg-8">
 
-        <a href="addNew"><button type="button"  class="btn btn-primary">Add New</button></a>
+        <a href="DailyReport/addNew"><button type="button"  class="btn btn-primary">Add New</button></a>
             Vegas Caravelle Report - 
             <span style="color: red"><?php echo $_SESSION['display_name']; ?></span>
             
@@ -24,7 +18,7 @@
     </div>
     <div class="col-lg-1">
       <button type="button"  class="btn btn-primary" onclick="getDate();">GO!</button>
->>>>>>> refs/remotes/origin/master
+
     </div>
 
     <!-- /.col-lg-12 -->

@@ -10,7 +10,7 @@
         </div>
         <!-- Modal body -->
         <div class="modal-body">
-            <form id="formChange" action="/KGIM/User/ChangePass" method="post" class="was-validated">
+            <form id="formChange" action="User/ChangePass" method="post" class="was-validated">
                 
                 
                 <div class="form-group">

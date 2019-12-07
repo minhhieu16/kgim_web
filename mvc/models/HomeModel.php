@@ -58,7 +58,7 @@ class HomeModel extends DB
             $date2 = $s2['2'].'-'.$s2['1'].'-'.$s2['0'];
             $where = "WHERE dr.Date BETWEEN '".$date1."' AND '".$date2."'";
         }else{
-            $date = '';
+            $where = '';
         }
         $sql = "SELECT dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution FROM tbl_dailyreport dr 
             join tbl_issue iss on iss.ID_Issue=dr.ID_Issue

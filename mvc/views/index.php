@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>Daily Report - Vegas</title>
-    <base href="http://localhost:88/project/kgim/kgim_web/">
+    <!-- <base href="http://localhost:88/project/kgim/kgim_web/"> -->
+	<base href="http://localhost/KGIM/">
     <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="public/dist/css/sb-admin-2.css" rel="stylesheet">
@@ -51,11 +52,8 @@
                         </li>
                         <li class="divider"></li>
                         <li><a href="./../User/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> refs/remotes/origin/master
+
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -117,12 +115,8 @@
     <script src="public/data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
-<<<<<<< HEAD
     <script src="public/dist/js/sb-admin-2.js"></script>
-=======
-    <script src="../public/dist/js/sb-admin-2.js"></script>
-    <script src="../public/dist/js/ChangePass.js"></script>
->>>>>>> 8a7f450e9991e833937bf044083003e94bcf4a3e
+    <script src="public/dist/js/ChangePass.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/dataTables.buttons.min.js"></script>
