@@ -51,7 +51,7 @@
                         <li><a href="#" data-toggle="modal" data-target="#changePassword"><i class="fa fa-gear fa-fw"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="./../User/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="User/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 
 
                         </li>
@@ -86,7 +86,9 @@
         <div id="page-wrapper">
             <?php
                 include 'pages/'.$data["pages"].'.php'; 
+                
             ?>
+
         </div>
         <div class="col-lg-12 bg-basic footer">
         <p align="center" style="margin-top: 20px;">© 2019 KGIM</p>
@@ -118,6 +120,7 @@
     <script src="public/dist/js/sb-admin-2.js"></script>
     <script src="public/dist/js/ChangePass.js"></script>
     <script src="public/dist/js/addNew.js"></script>
+    <script src="public/dist/js/editReport.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/dataTables.buttons.min.js"></script>
@@ -142,7 +145,7 @@
 
         var start = moment().subtract(29, 'days');
         var end = moment();
-
+        
         function cb(start, end) {
             $('#reportrange span').html(start.format('D/MM/YYYY') + ' - ' + end.format('D/MM/YYYY'));
         }
@@ -165,6 +168,7 @@
     function getDate(){
         var GamingDate = $('#reportrange span').html();
             $("#wrapper").html("Loading...");
+            
             $.ajax({
                 type: "POST",
                 url: "DailyReport/index",

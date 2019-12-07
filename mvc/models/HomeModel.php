@@ -1,9 +1,9 @@
 <?php
 class HomeModel extends DB
 {
-    public function Test()
+    public function ShowReport()
     {
-        $sql = "SELECT dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution FROM tbl_dailyreport dr 
+        $sql = "SELECT dr.ID_Report,dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution FROM tbl_dailyreport dr 
             join tbl_issue iss on iss.ID_Issue=dr.ID_Issue
             join tbl_level lv on lv.ID_Level=dr.ID_Level
             join tbl_status st on st.ID_Status=dr.ID_Status
@@ -66,11 +66,11 @@ class HomeModel extends DB
             $s2 = explode("/",$s[1]);
             $date1 = $s1['2'].'-'.$s1['1'].'-'.$s1['0'];
             $date2 = $s2['2'].'-'.$s2['1'].'-'.$s2['0'];
-            $where = "WHERE dr.Date BETWEEN '".$date1."' AND '".$date2."'";
+            $where = "WHERE dr.Date BETWEEN '".$date1." 00:00:00' AND '".$date2." 23:59:59'";
         }else{
             $where = '';
         }
-        $sql = "SELECT dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution FROM tbl_dailyreport dr 
+        $sql = "SELECT dr.ID_Report,dr.EmpID,dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution FROM tbl_dailyreport dr 
             join tbl_issue iss on iss.ID_Issue=dr.ID_Issue
             join tbl_level lv on lv.ID_Level=dr.ID_Level
             join tbl_status st on st.ID_Status=dr.ID_Status
@@ -104,7 +104,6 @@ class HomeModel extends DB
 
     public function addNewReportModel($data)
     {
-        $dateAddReport = $data['issue'];
         $sql = "insert into tbl_dailyreport values(null,CURRENT_TIMESTAMP,'".$data['issue']."',
         '".$data['mc']."','".$data['level']."','".$data['status']."','".$data['shift']."',
         '".$data['start']."','".$data['finish']."','".$data['issue']."',
@@ -115,6 +114,38 @@ class HomeModel extends DB
         
     }
 
+    public function checkEdit($id)
+    {
+        $sql = "select * from tbl_dailyreport where ID_Report = $id";
+        $res = mysqli_query($this->con,$sql);
+        $arr = array();
+        if(mysqli_num_rows($res)>0)
+        {
+            while($row=  mysqli_fetch_assoc($res))
+            {
+                $arr[] = $row;
+                
+                
+            }
+            
+        }
+        return json_encode($arr);
+    }
+    public function EditReportModel($data)
+    {
+        
+
+        $sql ="UPDATE tbl_dailyreport 
+        SET ID_Issue = '".$data['issue']."' ,  MC = '".$data['mc']."',
+            ID_Level = '".$data['level']."' ,  ID_Status = '".$data['status']."',
+            ShiftID = '".$data['shift']."' ,  Start = '".$data['start']."',
+            Finished = '".$data['finish']."' ,  Total = '".$data['total']."',
+            Note = '".$data['note']."' ,  Reason = '".$data['reason']."',
+            Solution = '".$data['solution']."'
+        WHERE ID_Report = '".$data['idReport']."'";
+        $result = mysqli_query($this->con,$sql);
+        return $result;
+    }
 }
 
 

@@ -76,6 +76,71 @@ $(document).ready(function() {
             }
         })
    }
+
+//    form edit
+   $("#formEdit").on('submit',function(e) {
+    e.preventDefault();
+
+    $form = $(this);
     
+    submitEditReport($form);
+});
+function submitEditReport($form) {
+    var type = $("#Type").val();
+    var issue = $("#issue").val();
+    var valMC = $("#valMC").val();
+    var level = $("#level").val();
+    var status = $("#status").val();
+    var shift = $("#shift").val();
+    var startID = $("#startID").val();
+    var finishID = $("#finishID").val();
+    var total = $("#total").val();
+    var note = $("#note").val();
+    var reason = $("#reason").val();
+    var solution = $("#solution").val();
+    var temp;
+    if(type == 'MC')
+    {
+        temp = valMC;
+    }
+    else
+    {
+        temp = type
+    }
+
+    $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        data:{
+            editReport: "editReport",
+            issue: issue,
+            level: level,
+            mc: temp,
+            status: status,
+            shift: shift,
+            total: total,
+            start: startID,
+            finish: finishID,
+            note: note,
+            reason: reason,
+            solution: solution, 
+        },
+        success: function (response) {
+            
+            if(response=="success")
+            {
+                $('#notice').html('<p style="color: green; text-align:center">Edit successed!</p>');
+
+            }
+            else if(response=="failed")
+            {
+                $('#notice').html('<p style="color: red; text-align:center">Edit failed!</p>');
+            }
+        },
+        error: function (req) {
+            alert('error')
+        }
+    })
+}
 
 })

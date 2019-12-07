@@ -101,6 +101,54 @@ class DailyReport extends Controller
             }
         }
 
+
+        public function Edit($id)
+        {
+            $arr = array();
+            $this->view("index",[
+                "pages"=>"edit",
+                "OldReport"=>$this->rep->checkEdit($id),
+                "issue"=>$this->rep->Add_Issue(),
+                "status"=>$this->rep->Add_Status(),
+                "level"=>$this->rep->Add_Level(),
+                "shift"=>$this->rep->Add_Shift(),
+                "SessionIdReport" => $id
+            ]);
+        }
+
+        public function EditReport($idReport)
+        {
+            
+            if(isset($_POST['editReport']))
+            {
+                
+                $data = array(
+                            "idReport"=> $idReport,
+                            "issue"=> $_POST['issue'],
+                            "level"=> $_POST['level'],
+                            "mc"=> $_POST['mc'],
+                            "shift"=> $_POST['shift'],
+                            "status"=> $_POST['status'],
+                            "total"=> $_POST['total'],
+                            "start"=> $_POST['start'],
+                            "finish"=> $_POST['finish'],
+                            "note"=> $_POST['note'],
+                            "reason"=> $_POST['reason'],
+                            "solution"=> $_POST['solution']
+                            );
+                
+                if($this->rep->EditReportModel($data)==true){
+                    echo "success";
+                }else{
+                    echo "faileds";
+                }
+                
+            }
+            else 
+            {
+                echo "failed";
+            }
+        }
 }
 
 ?>

@@ -24,7 +24,7 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-    
+
 <div class="row reportrange">
     <div  class="col-lg-12 table-responsive" >
         <table id="example" class="display nowrap table" cellpadding="0" width="100%">
@@ -69,9 +69,10 @@
                         echo "<td>".$data->Note."</td>";
                         echo "<td>".$data->Reason."</td>";
                         echo "<td>".$data->Solution."</td>";
-                        echo '<td><a class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a></td>';
+                        echo '<td><a href="DailyReport/Edit/'.$data->ID_Report.'" id="editReport" class="btn btn-info btn-xs" ><i class="fa fa-pencil"></i>Edit</a></td>';
                         echo "</tr>";
                         $i++;
+                        
 
                     } 
                 ?>
