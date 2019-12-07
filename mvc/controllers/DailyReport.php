@@ -13,10 +13,20 @@ class DailyReport extends Controller
     public function index()
     {
         $rep = $this->model("HomeModel");
-        $this->view("index",[
-            "pages"=>"show",
-            "rep"=>$rep->Test()
+        
+        if (isset($_POST['GamingDate'])) {
+            $date = $_POST['GamingDate'];
+        }else{
+            $date = null;
+        }
+            $this->view("index",[
+                "pages"=>"show",
+                "date" => $date,
+                "rep"=>$rep->getDate($date)
         ]);
+
+
+        
     }
     public function addNew()
     {
@@ -28,6 +38,7 @@ class DailyReport extends Controller
             "level"=>$add->Add_Level()
         ]);
     }
+
 
 }
 

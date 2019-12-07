@@ -10,13 +10,17 @@
     <meta name="author" content="">
 
     <title>Daily Report - Vegas</title>
-    <link href="../public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../public/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <link href="../public/dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../public/vendor/morrisjs/morris.css" rel="stylesheet">
-    <link href="../public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../public/vendor/datatables/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="../public/vendor/datatables/css/buttons.dataTables.min.css">
+    <base href="http://localhost:88/project/kgim/kgim_web/">
+    <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="public/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="public/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="public/vendor/datatables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="public/vendor/datatables/css/buttons.dataTables.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body>
@@ -102,28 +106,28 @@
         include 'pages/model.php';
     ?>
     <!-- jQuery -->
-    <script src="../public/vendor/jquery/jquery.min.js"></script>
+    <script src="public/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../public/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../public/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="public/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="../public/vendor/raphael/raphael.min.js"></script>
-    <script src="../public/vendor/morrisjs/morris.min.js"></script>
-    <script src="../public/data/morris-data.js"></script>
+    <script src="public/vendor/raphael/raphael.min.js"></script>
+    <script src="public/vendor/morrisjs/morris.min.js"></script>
+    <script src="public/data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../public/dist/js/sb-admin-2.js"></script>
+    <script src="public/dist/js/sb-admin-2.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../public/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../public/vendor/datatables/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="../public/vendor/datatables/js/buttons.flash.min.js"></script>
-    <script type="text/javascript" src="../public/vendor/datatables/js/pdfmake.min.js"></script>
-    <script type="text/javascript" src="../public/vendor/datatables/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="../public/vendor/datatables/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="public/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="public/vendor/datatables/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="public/vendor/datatables/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="public/vendor/datatables/js/pdfmake.min.js"></script>
+    <script type="text/javascript" src="public/vendor/datatables/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="public/vendor/datatables/js/buttons.print.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#example').DataTable( {
@@ -133,6 +137,49 @@
                 ]
             } );
         } );
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('D/MM/YYYY') + ' - ' + end.format('D/MM/YYYY'));
+        }
+
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+
+        cb(start, end);
+    });
+    function getDate(){
+        var GamingDate = $('#reportrange span').html();
+            $("#wrapper").html("Loading...");
+            $.ajax({
+                type: "POST",
+                url: "DailyReport/index",
+                data: {GamingDate: GamingDate },
+                error: function (request, status, error) {
+                    alert("Thất Bại");
+                },
+                success: function (data) {
+                    $("#wrapper").html(data);
+                }
+            });
+    }
     </script>
 </body>
 

@@ -10,6 +10,7 @@
 <head>
 	<title>Login KGIM</title>
 	<meta charset="UTF-8">
+	<base href="http://localhost:88/project/kgim/kgim_web/">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="./public/images/icons/favicon.ico"/>
@@ -42,7 +43,7 @@
 				<span class="login100-form-title p-b-41">
 					KGIM
 				</span>
-				<form class="login100-form validate-form p-b-33 p-t-5" method="post" action="/KGIM/Login/UserLogin">
+				<form class="login100-form validate-form p-b-33 p-t-5" method="post" action="Login/UserLogin">
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input class="input100" type="text" name="username" placeholder="User name">
