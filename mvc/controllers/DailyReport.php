@@ -2,9 +2,11 @@
 class DailyReport extends Controller 
 {
     public $checkUser;
+    public $rep;
     public function __construct ()
     {
         $this->checkUser = $this->SessionProcess();
+        $this->rep = $this->model("HomeModel");
         if(!$this->checkUser)
         {
             echo '<script language="javascript">location.href="./../index.php";</script>';
@@ -12,7 +14,6 @@ class DailyReport extends Controller
     }
     public function index()
     {
-        $rep = $this->model("HomeModel");
         
         if (isset($_POST['GamingDate'])) {
             $date = $_POST['GamingDate'];
@@ -22,7 +23,7 @@ class DailyReport extends Controller
             $this->view("index",[
                 "pages"=>"show",
                 "date" => $date,
-                "rep"=>$rep->getDate($date)
+                "rep"=>$this->rep->getDate($date)
         ]);
 
 
@@ -30,15 +31,75 @@ class DailyReport extends Controller
     }
     public function addNew()
     {
-        $add = $this->model("HomeModel");
+        
         $this->view("index",[
             "pages"=>"addNew",
-            "issue"=>$add->Add_Issue(),
-            "status"=>$add->Add_Status(),
-            "level"=>$add->Add_Level()]);
+            "issue"=>$this->rep->Add_Issue(),
+            "status"=>$this->rep->Add_Status(),
+            "level"=>$this->rep->Add_Level(),
+            "shift"=>$this->rep->Add_Shift()]);
+            
+        }
+        
+        public function ajaxChooseType()
+        {
+            if(isset($_POST['id']))
+            {
+               $arrType =  $this->rep->selectType($_POST['id']);
+               foreach($arrType as $val)
+               {
+                   
+                   echo'
+                        <option value="'.$val['Type'].'">'.$val['Type'].'</option>
+                   ';
+               }
+            }
+        }
 
-    }
+        public function CalcuTime()
+        {
+            if (isset($_POST['time'])) {
+                $s1 = explode(':', $_POST['timeS1']);
+                $s2 = explode(':', $_POST['timeS2']);
+                
+                $total = ($s2[0]*60 + $s2[1] ) - ($s1[0]*60 + $s1[1] );
+                $du = $total%60;
+                $nguyen = ($total-$du)/60;
+              
+                echo $total_char = $nguyen.":".$du;
+            }
+        }
 
+        public function addNewReport()
+        {
+            if(isset($_POST['newReport']))
+            {
+                $data = array(
+                            "issue"=> $_POST['issue'],
+                            "level"=> $_POST['level'],
+                            "mc"=> $_POST['mc'],
+                            "shift"=> $_POST['shift'],
+                            "status"=> $_POST['status'],
+                            "total"=> $_POST['total'],
+                            "start"=> $_POST['start'],
+                            "finish"=> $_POST['finish'],
+                            "note"=> $_POST['note'],
+                            "reason"=> $_POST['reason'],
+                            "solution"=> $_POST['solution']
+                            );
+                
+                if($this->rep->addNewReportModel($data)==true){
+                    echo "success";
+                }else{
+                    echo "failed";
+                }
+                
+            }
+            else 
+            {
+                echo "failed";
+            }
+        }
 
 }
 

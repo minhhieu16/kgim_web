@@ -117,6 +117,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="public/dist/js/sb-admin-2.js"></script>
     <script src="public/dist/js/ChangePass.js"></script>
+    <script src="public/dist/js/addNew.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/dataTables.buttons.min.js"></script>

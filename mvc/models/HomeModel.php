@@ -29,7 +29,17 @@ class HomeModel extends DB
         return json_encode($arr);
     }
     public function Add_Status(){
-        $sql = "SELECT * FROM tbl_status";
+        $sql = "SELECT * FROM tbl_status WHERE IsActive = 1";
+        $arr = array();
+        $row = mysqli_query($this->con,$sql);
+        while($rows = mysqli_fetch_array($row))
+        {
+            $arr[]= $rows;
+        }
+        return json_encode($arr);
+    }
+    public function Add_Shift(){
+        $sql = "SELECT * FROM tbl_shiftname WHERE IsActive = 1";
         $arr = array();
         $row = mysqli_query($this->con,$sql);
         while($rows = mysqli_fetch_array($row))
@@ -39,7 +49,7 @@ class HomeModel extends DB
         return json_encode($arr);
     }
     public function Add_Level(){
-        $sql = "SELECT * FROM tbl_level";
+        $sql = "SELECT * FROM tbl_level WHERE IsActive = 1";
         $arr = array();
         $row = mysqli_query($this->con,$sql);
         while($rows = mysqli_fetch_array($row))
@@ -76,6 +86,34 @@ class HomeModel extends DB
         return json_encode($arr);
     }
     
+    public function selectType($id)
+    {
+        $sql = "select Type from tbl_issue where ID_Issue = '$id' ";
+        $res = mysqli_query($this->con, $sql);
+        $arr = array();
+        if(mysqli_num_rows($res)>0)
+        {
+            while($row = mysqli_fetch_assoc($res))
+            {
+                $arr[] = $row;
+            }
+        }
+        return $arr;
+
+    }
+
+    public function addNewReportModel($data)
+    {
+        $dateAddReport = $data['issue'];
+        $sql = "insert into tbl_dailyreport values(null,CURRENT_TIMESTAMP,'".$data['issue']."',
+        '".$data['mc']."','".$data['level']."','".$data['status']."','".$data['shift']."',
+        '".$data['start']."','".$data['finish']."','".$data['issue']."',
+        '".$_SESSION['ID']."','".$data['note']."','".$data['reason']."',
+        '".$data['solution']."',1)";
+        $result = mysqli_query($this->con,$sql);
+        return $result;
+        
+    }
 
 }
 
