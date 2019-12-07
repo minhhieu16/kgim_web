@@ -36,6 +36,21 @@ class User extends Controller
             echo "missing value";
         }
     }
+
+    public function ChangePass()
+    {
+        if(isset($_POST['btnChangePass'])){
+
+        }
+    }
+
+    public function Logout()
+    {
+        session_unset();
+        session_destroy();
+        header("location: ./../index.php");
+        exit();
+    }
 }
 
 ?>
