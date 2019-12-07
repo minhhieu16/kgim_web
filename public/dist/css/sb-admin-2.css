@@ -440,3 +440,7 @@ table.dataTable thead .sorting:after {
 .add {
   padding-top: 10px;
 }
+.show {
+  margin-top: 10px;
+  font-size: 30px;
+}
