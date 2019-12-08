@@ -65,8 +65,34 @@ class DailyReport extends Controller
                 $total = ($s2[0]*60 + $s2[1] ) - ($s1[0]*60 + $s1[1] );
                 $du = $total%60;
                 $nguyen = ($total-$du)/60;
-              
-                echo $total_char = $nguyen.":".$du;
+                $checkNguyen = true;
+                $checkDu = true;
+                if($nguyen < 10 && $nguyen >= 0)
+                {
+                    $nguyen = "0".$nguyen;
+                    $checkNguyen = true;
+                }
+                elseif ($nguyen < 0)
+                {
+                    $checkNguyen = false;
+                }
+                if($du < 10 && $du >= 0)
+                {
+                    $du = "0".$du;
+                    $checkDu = true;
+                }
+                elseif ($du < 0)
+                {
+                    $checkDu = false;
+                }
+                if($checkDu && $checkNguyen)
+                {
+                    echo $total_char = $nguyen.":".$du;
+
+                }
+                else {
+                    echo "failed";
+                }
             }
         }
 
@@ -93,7 +119,7 @@ class DailyReport extends Controller
                 }else{
                     echo "failed";
                 }
-                
+                echo var_dump($data);
             }
             else 
             {

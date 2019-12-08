@@ -11,7 +11,17 @@ $(document).ready(function() {
         var start= $("#startID").val();
         var finish = $(this).val();
         $.post("DailyReport/CalcuTime",{time: "CalTotal", timeS1: start, timeS2: finish},function (data) {
-            $("#total").html('<input type="text" class="form-control" id="total" name="total" value="'+data+'" disabled="">');
+
+            if(data=="failed")
+            {   
+                $("#noticeTotal").html("<p style='color: red;'>TotalTime can not be nagative number!</p>")
+            }
+            else
+            {   
+                $("#noticeTotal").html("");
+                $("#total12").html('<input type="text" class="form-control" id="total" name="total" value="'+data+'" disabled="">');
+
+            }
         })
     })
     $("#formAdd").on('submit',function(e) {
@@ -64,12 +74,12 @@ $(document).ready(function() {
             success: function (response) {
                 if(response=="success")
                 {
-                    $('#notice').html('<p style="color: green; text-align:center">Add successed!</p>');
-
+                    $('#notice').html('<p style="color: green; text-align:center;font-weight: bold;font-size: 20px;">Add successed!</p>');
+                    
                 }
                 else if(response=="failed")
                 {
-                    $('#notice').html('<p style="color: red; text-align:center">Add failed!</p>');                }
+                    $('#notice').html('<p style="color: red; text-align:center;font-weight: bold;font-size: 20px;">Add failed!</p>');                }
             },
             error: function (req) {
                 alert('error')
@@ -129,12 +139,12 @@ function submitEditReport($form) {
             
             if(response=="success")
             {
-                $('#notice').html('<p style="color: green; text-align:center">Edit successed!</p>');
+                $('#notice').html('<p style="color: green; text-align:center; font-weight: bold;font-size: 20px;">Edit successed!</p>');
 
             }
             else if(response=="failed")
             {
-                $('#notice').html('<p style="color: red; text-align:center">Edit failed!</p>');
+                $('#notice').html('<p style="color: red; text-align:center;font-weight: bold;font-size: 20px;">Edit failed!</p>');
             }
         },
         error: function (req) {

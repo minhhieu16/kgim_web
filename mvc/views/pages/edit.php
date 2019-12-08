@@ -114,8 +114,15 @@ foreach ($a as $value) {
             </div>
             <div class="col-lg-4">
                 <label for="uname">Total:</label>
-                <div id="total">
+                <div id="total12">
                 <input type="text" value="<?php echo $value->Total; ?>" class="form-control" id="total" name="total" value="" disabled=""></div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-12" id="noticeTotal">
+            
             </div>
         </div>
     </div>

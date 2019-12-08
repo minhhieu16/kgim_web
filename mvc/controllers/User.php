@@ -30,13 +30,14 @@ class User extends Controller
             }
             else
             {
-                echo "error";
+                echo '<script language="javascript">alert("Login Failed!");</script>';
+                echo '<script language="javascript">location.href="../User/IndexLogin";</script>';
             }
              
         }
         else
         {
-            echo "missing value";
+            echo '<script language="javascript">location.href="../User/IndexLogin";</script>';
         }
     }
 

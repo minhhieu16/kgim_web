@@ -94,9 +94,18 @@
                 <input type="time" class="form-control" id="finishID" name="finishID" required>
             </div>
             <div class="col-lg-4">
-                <label for="uname">Total:</label>
-                <div id="total">
-                <input type="text" class="form-control" id="total" name="total" value="" disabled=""></div>
+                <label for="uname">Total: </label>
+                <div id="total12">
+                    <input type="text" class="form-control" id="total" name="total" disabled="">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-12" id="noticeTotal">
+            
             </div>
         </div>
     </div>
@@ -106,9 +115,7 @@
                 <label for="uname">Note:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" id="note" name="note" placeholder="Note">
-                   
-               </textarea>
+               <textarea class="form-control" id="note" name="note" placeholder="Note"></textarea>
             </div>
         </div>
     </div>
@@ -118,9 +125,7 @@
                 <label for="uname">Reason:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="reason" id="reason" placeholder="Reason">
-                   
-               </textarea>
+               <textarea class="form-control" name="reason" id="reason" placeholder="Reason"></textarea>
             </div>
         </div>
     </div>
@@ -130,9 +135,7 @@
                 <label for="uname">Solution:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="solution" id="solution" placeholder="Solution">
-                   
-               </textarea>
+               <textarea class="form-control" name="solution" id="solution" placeholder="Solution"></textarea>
             </div>
         </div>
     </div>
