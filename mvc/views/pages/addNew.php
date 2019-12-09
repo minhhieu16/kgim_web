@@ -76,16 +76,6 @@
     <div class="form-group">
         <div class="row">
             <div class="col-lg-4">
-                
-            </div>
-            <div class="col-lg-8">
-                
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-lg-4">
                 <label for="uname">Start:</label>
                 <input type="time" class="form-control" id="startID" name="startID" required>
             </div>

@@ -10,8 +10,7 @@
 <head>
 	<title>Login KGIM</title>
 	<meta charset="UTF-8">
-	<!-- <base href="http://localhost:88/project/kgim/kgim_web/"> -->
-	<base href="http://localhost/KGIM/">
+	<base href="http://localhost:88/kgim_web/">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="./public/images/icons/favicon.ico"/>

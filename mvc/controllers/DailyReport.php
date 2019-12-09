@@ -14,21 +14,37 @@ class DailyReport extends Controller
     }
     public function index()
     {
+            $this->view("index",[
+                "pages"=>"show"
+        ]);
+    }
+    public function processDateReport()
+    {
+        if(isset($_POST['func'])&&$_POST['func']=='show')
+        {
+            if ($_POST['date']=='no') {
+                $where = ' ';
+            } else {
+                $where = $this->rep->handle_date($_POST['date']);
+            }
+            $data = $this->rep->getReport($where);
+            echo $data;
+        }
+    }
+    public function searchDate()
+    {
         
         if (isset($_POST['GamingDate'])) {
             $date = $_POST['GamingDate'];
-        }else{
-            $date = null;
-        }
             $this->view("index",[
-                "pages"=>"show",
-                "date" => $date,
-                "rep"=>$this->rep->getDate($date)
-        ]);
-
-
-        
+                    "pages"=>"show",
+                    "date" => $date,
+                    "rep"=>$this->rep->getDate($date)
+            ]);
+        }
+            
     }
+
     public function addNew()
     {
         
@@ -119,7 +135,7 @@ class DailyReport extends Controller
                 }else{
                     echo "failed";
                 }
-                echo var_dump($data);
+                
             }
             else 
             {

@@ -10,8 +10,7 @@
     <meta name="author" content="">
 
     <title>Daily Report - Vegas</title>
-    <!-- <base href="http://localhost:88/project/kgim/kgim_web/"> -->
-	<base href="http://localhost/KGIM/">
+    <base href="http://localhost:88/kgim_web/">
     <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="public/dist/css/sb-admin-2.css" rel="stylesheet">
@@ -128,18 +127,8 @@
     <script type="text/javascript" src="public/vendor/datatables/js/pdfmake.min.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/buttons.print.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#example').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            } );
-        } );
-    </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
     <script type="text/javascript">
     $(function() {
 
@@ -165,23 +154,37 @@
 
         cb(start, end);
     });
-    function getDate(){
+    
+    function searchDateTest(){
         var GamingDate = $('#reportrange span').html();
-            $("#wrapper").html("Loading...");
-            
-            $.ajax({
-                type: "POST",
-                url: "DailyReport/index",
-                data: {GamingDate: GamingDate },
-                error: function (request, status, error) {
-                    alert("Thất Bại");
-                },
-                success: function (data) {
-                    $("#wrapper").html(data);
-                }
-            });
+        fetch_data(GamingDate);
     }
-    </script>
+    fetch_data('no');
+    function fetch_data(GamingDate)
+    {
+        var dataTable = $('#order_data').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+           "ajax" : {
+            url:"DailyReport/processDateReport",
+            type:"POST",
+            data:{
+              func: 'show',
+              date: GamingDate
+            }
+           },
+            paging: false,
+            searching: true,
+            ordering: true,
+            deferRender: true,
+            scrollCollapse: true,
+            scroller: true,
+            destroy: true
+      });
+    }
+</script>
 </body>
 
 </html>

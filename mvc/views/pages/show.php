@@ -1,5 +1,3 @@
-
-
 <div class="row show">
     <div class="col-lg-8">
 
@@ -16,8 +14,8 @@
       </div>
       
     </div>
-    <div class="col-lg-1">
-      <button type="button"  class="btn btn-primary" onclick="getDate();">GO!</button>
+    <div class="col-lg-1"> 
+      <button type="button"  class="btn btn-primary" onclick="searchDateTest();">GO!</button>
 
     </div>
 
@@ -26,8 +24,8 @@
 <!-- /.row -->
 
 <div class="row reportrange">
-    <div  class="col-lg-12 table-responsive" >
-        <table id="example" class="display nowrap table" cellpadding="0" width="100%">
+    <div  class="col-lg-12 table-responsive" id="rptContent" >
+        <table id="order_data" class="table table-bordered table-striped display" cellpadding="0" width="100%">
             <thead>
                 <tr>
                    <td>No</td>
@@ -50,36 +48,9 @@
             <tbody>
                 
                 
-                <?php
-                    $dataD = json_decode($data["rep"]);
-                    $i = 1;
-                    foreach ($dataD as $data) {
-                        echo "<tr>";
-                        echo "<td>".$i."</td>";
-                        echo "<td>".date('d/m/y',strtotime($data->Date))."</td>";
-                        echo "<td>".$data->IssueName."</td>";
-                        echo "<td>".$data->MC."</td>";
-                        echo "<td>".$data->Level."</td>";
-                        echo "<td>".$data->Status."</td>";
-                        echo "<td>".$data->ShiftName."</td>";
-                        echo "<td>".$data->Start."</td>";
-                        echo "<td>".$data->Finished."</td>";
-                        echo "<td>".$data->Total."</td>";
-                        echo "<td>".$data->DisplayName."</td>";
-                        echo "<td>".$data->Note."</td>";
-                        echo "<td>".$data->Reason."</td>";
-                        echo "<td>".$data->Solution."</td>";
-                        echo '<td><a href="DailyReport/Edit/'.$data->ID_Report.'" id="editReport" class="btn btn-info btn-xs" ><i class="fa fa-pencil"></i>Edit</a></td>';
-                        echo "</tr>";
-                        $i++;
-                        
-
-                    } 
-                ?>
+                
             </tbody>
         </table>
     </div>
     
 </div>
-
-<!-- /.row -->

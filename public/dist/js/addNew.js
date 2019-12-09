@@ -72,6 +72,7 @@ $(document).ready(function() {
                 solution: solution, 
             },
             success: function (response) {
+                
                 if(response=="success")
                 {
                     $('#notice').html('<p style="color: green; text-align:center;font-weight: bold;font-size: 20px;">Add successed!</p>');
