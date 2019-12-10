@@ -27,7 +27,7 @@
                 <label for="type">Type:</label>
             </div>
             <div class="col-lg-3">
-                <select class="form-control" id="Type" name="Type">
+                <select class="form-control" id="Type" name="Type" required>
                     <option></option>
                 </select>
             </div>
@@ -76,16 +76,6 @@
     <div class="form-group">
         <div class="row">
             <div class="col-lg-4">
-                
-            </div>
-            <div class="col-lg-8">
-                
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-lg-4">
                 <label for="uname">Start:</label>
                 <input type="time" class="form-control" id="startID" name="startID" required>
             </div>
@@ -94,9 +84,18 @@
                 <input type="time" class="form-control" id="finishID" name="finishID" required>
             </div>
             <div class="col-lg-4">
-                <label for="uname">Total:</label>
-                <div id="total">
-                <input type="text" class="form-control" id="total" name="total" value="" disabled=""></div>
+                <label for="uname">Total: </label>
+                <div id="total12">
+                    <input type="text" class="form-control" id="total" name="total" disabled="">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-12" id="noticeTotal">
+            
             </div>
         </div>
     </div>
@@ -106,9 +105,7 @@
                 <label for="uname">Note:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" id="note" name="note" placeholder="Note">
-                   
-               </textarea>
+               <textarea class="form-control" id="note" name="note" placeholder="Note"></textarea>
             </div>
         </div>
     </div>
@@ -118,9 +115,7 @@
                 <label for="uname">Reason:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="reason" id="reason" placeholder="Reason">
-                   
-               </textarea>
+               <textarea class="form-control" name="reason" id="reason" placeholder="Reason"></textarea>
             </div>
         </div>
     </div>
@@ -130,15 +125,14 @@
                 <label for="uname">Solution:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="solution" id="solution" placeholder="Solution">
-                   
-               </textarea>
+               <textarea class="form-control" name="solution" id="solution" placeholder="Solution"></textarea>
             </div>
         </div>
     </div>
   
   
   <button type="submit" id="" class="btn btn-primary">Add</button>
+  <a href="index.php" class="btn btn-danger" id="back">Back</a>
   <div  style="text-align: center;" id="notice"></div>
 </form>
     </div>

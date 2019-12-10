@@ -9,11 +9,39 @@ $(document).ready(function() {
 
     $("#finishID").change(function () {
         var start= $("#startID").val();
-        var finish = $(this).val();
+        var finish = $("#finishID").val();
         $.post("DailyReport/CalcuTime",{time: "CalTotal", timeS1: start, timeS2: finish},function (data) {
-            $("#total").html('<input type="text" class="form-control" id="total" name="total" value="'+data+'" disabled="">');
+
+            if(data=="failed")
+            {   
+                $("#noticeTotal").html("<p style='color: red;'>TotalTime can not be nagative number!</p>")
+            }
+            else
+            {   
+                $("#noticeTotal").html("");
+                $("#total12").html('<input type="text" class="form-control" id="total" name="total" value="'+data+'" disabled="">');
+
+            }
         })
     })
+    $("#startID").change(function () {
+        var start= $("#startID").val();
+        var finish = $("#finishID").val();
+        $.post("DailyReport/CalcuTime",{time: "CalTotal", timeS1: start, timeS2: finish},function (data) {
+
+            if(data=="failed")
+            {   
+                $("#noticeTotal").html("<p style='color: red;'>TotalTime can not be nagative number!</p>")
+            }
+            else
+            {   
+                $("#noticeTotal").html("");
+                $("#total12").html('<input type="text" class="form-control" id="total" name="total" value="'+data+'" disabled="">');
+
+            }
+        })
+    })
+
     $("#formAdd").on('submit',function(e) {
         e.preventDefault();
  
@@ -62,17 +90,19 @@ $(document).ready(function() {
                 solution: solution, 
             },
             success: function (response) {
+                
                 if(response=="success")
                 {
-                    $('#notice').html('<p style="color: green; text-align:center">Add successed!</p>');
-
+                    //$('#notice').html('<p style="color: green; text-align:center;font-weight: bold;font-size: 20px;">Add successed!</p>');
+                    alert('Add Success');
+                    window.location="index.php";
                 }
                 else if(response=="failed")
                 {
-                    $('#notice').html('<p style="color: red; text-align:center">Add failed!</p>');                }
+                    $('#notice').html('<p style="color: red; text-align:center;font-weight: bold;font-size: 20px;">Add failed!</p>');                }
             },
             error: function (req) {
-                alert('error')
+                alert('error');
             }
         })
    }
@@ -129,12 +159,12 @@ function submitEditReport($form) {
             
             if(response=="success")
             {
-                $('#notice').html('<p style="color: green; text-align:center">Edit successed!</p>');
+                $('#notice').html('<p style="color: green; text-align:center; font-weight: bold;font-size: 20px;">Edit successed!</p>');
 
             }
             else if(response=="failed")
             {
-                $('#notice').html('<p style="color: red; text-align:center">Edit failed!</p>');
+                $('#notice').html('<p style="color: red; text-align:center;font-weight: bold;font-size: 20px;">Edit failed!</p>');
             }
         },
         error: function (req) {

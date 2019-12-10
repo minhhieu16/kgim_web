@@ -14,21 +14,37 @@ class DailyReport extends Controller
     }
     public function index()
     {
+            $this->view("index",[
+                "pages"=>"show"
+        ]);
+    }
+    public function processDateReport()
+    {
+        if(isset($_POST['func'])&&$_POST['func']=='show')
+        {
+            if ($_POST['date']=='no') {
+                $where = ' ';
+            } else {
+                $where = $this->rep->handle_date($_POST['date']);
+            }
+            $data = $this->rep->getReport($where);
+            echo $data;
+        }
+    }
+    public function searchDate()
+    {
         
         if (isset($_POST['GamingDate'])) {
             $date = $_POST['GamingDate'];
-        }else{
-            $date = null;
-        }
             $this->view("index",[
-                "pages"=>"show",
-                "date" => $date,
-                "rep"=>$this->rep->getDate($date)
-        ]);
-
-
-        
+                    "pages"=>"show",
+                    "date" => $date,
+                    "rep"=>$this->rep->getDate($date)
+            ]);
+        }
+            
     }
+
     public function addNew()
     {
         
@@ -65,8 +81,34 @@ class DailyReport extends Controller
                 $total = ($s2[0]*60 + $s2[1] ) - ($s1[0]*60 + $s1[1] );
                 $du = $total%60;
                 $nguyen = ($total-$du)/60;
-              
-                echo $total_char = $nguyen.":".$du;
+                $checkNguyen = true;
+                $checkDu = true;
+                if($nguyen < 10 && $nguyen >= 0)
+                {
+                    $nguyen = "0".$nguyen;
+                    $checkNguyen = true;
+                }
+                elseif ($nguyen < 0)
+                {
+                    $checkNguyen = false;
+                }
+                if($du < 10 && $du >= 0)
+                {
+                    $du = "0".$du;
+                    $checkDu = true;
+                }
+                elseif ($du < 0)
+                {
+                    $checkDu = false;
+                }
+                if($checkDu && $checkNguyen)
+                {
+                    echo $total_char = $nguyen.":".$du;
+
+                }
+                else {
+                    echo "failed";
+                }
             }
         }
 
@@ -104,18 +146,28 @@ class DailyReport extends Controller
 
         public function Edit($id)
         {
-            $arr = array();
-            $this->view("index",[
-                "pages"=>"edit",
-                "OldReport"=>$this->rep->checkEdit($id),
-                "issue"=>$this->rep->Add_Issue(),
-                "status"=>$this->rep->Add_Status(),
-                "level"=>$this->rep->Add_Level(),
-                "shift"=>$this->rep->Add_Shift(),
-                "SessionIdReport" => $id
-            ]);
-        }
+            $arr =json_decode($this->rep->checkEdit($id));
+            
+            if($arr[0]->EmpID == $_SESSION['ID'])
+            {
+                $this->view("index",[
+                    "pages"=>"edit",
+                    "OldReport"=>$this->rep->checkEdit($id),
+                    "issue"=>$this->rep->Add_Issue(),
+                    "status"=>$this->rep->Add_Status(),
+                    "level"=>$this->rep->Add_Level(),
+                    "shift"=>$this->rep->Add_Shift(),
+                    "SessionIdReport" => $id
+                ]);
 
+            }
+            else {
+                $name = $this->rep->getName($arr[0]->EmpID);
+                echo "<script language='javascript'>alert('You can not edit report of ".$name[0]['DisplayName']." ');</script>";
+                echo '<script language="javascript">location.href="../index";</script>';
+            }
+        }
+        
         public function EditReport($idReport)
         {
             

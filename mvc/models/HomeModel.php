@@ -1,23 +1,73 @@
 <?php
 class HomeModel extends DB
 {
-    public function ShowReport()
+    
+    public function handle_date($date){
+        $date = str_replace(" ","",$date);
+        $s = explode("-",$date);
+        $s1 = explode("/",$s[0]);
+        $s2 = explode("/",$s[1]);
+        $date1 = $s1['2'].'-'.$s1['1'].'-'.$s1['0'];
+        $date2 = $s2['2'].'-'.$s2['1'].'-'.$s2['0'];
+        return $where = " AND dr.Date BETWEEN '".$date1." 00:00:00' AND '".$date2." 23:59:59'";
+    }
+    public function getReport($where)
     {
-        $sql = "SELECT dr.ID_Report,dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution FROM tbl_dailyreport dr 
+        
+        $sql = "SELECT dr.ID_Report,dr.EmpID,dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution,dr.IsActive FROM tbl_dailyreport dr 
             join tbl_issue iss on iss.ID_Issue=dr.ID_Issue
             join tbl_level lv on lv.ID_Level=dr.ID_Level
             join tbl_status st on st.ID_Status=dr.ID_Status
             join tbl_employee emp on emp.EmpID=dr.EmpID
             join tbl_shiftname s on s.ShiftID=dr.ShiftID
-            ";
+            WHERE dr.IsActive = 1 ".$where;
         $arr = array();
         $row = mysqli_query($this->con,$sql);
+        $i = 1;
         while($rows = mysqli_fetch_array($row))
         {
-            $arr[]= $rows;
+            $sub_array = array();
+            $sub_array[] = $i;
+            $sub_array[] = date('d/m/y',strtotime($rows["Date"]));
+            $sub_array[] = $rows["IssueName"];
+            $sub_array[] = $rows["MC"];
+            $sub_array[] = $rows["Level"];
+            $sub_array[] = $rows["Status"];
+            $sub_array[] = $rows["ShiftName"];
+            $sub_array[] = $rows["Start"];
+            $sub_array[] = $rows["Finished"];
+            $sub_array[] = $rows["Total"];
+            $sub_array[] = $rows["DisplayName"];
+            $sub_array[] = $rows["Note"];
+            $sub_array[] = $rows["Reason"];
+            $sub_array[] = $rows["Solution"];
+            //$sub_array[] = $rows["ID_Report"];
+            $sub_array[] = "<a href='DailyReport/Edit/".$rows['ID_Report']."' id='editReport' class='btn btn-info btn-xs' ><i class='fa fa-pencil'></i>Edit</a>";
+            $arr[] = $sub_array;
+            $i+=1;
         }
-        return json_encode($arr);
+       
+        $output = array(
+        "recordsTotal"  =>  $this->get_all_data(),
+        "recordsFiltered" => $this->number_filter_row(),
+         "data"    => $arr
+        );
+
+        return json_encode($output);
     }
+    public function get_all_data()
+    {
+     $sql = "SELECT * FROM tbl_dailyreport";
+     $result = mysqli_query($this->con,$sql);
+     return mysqli_num_rows($result);
+    }
+    public function number_filter_row()
+    {
+     $sql = "SELECT * FROM tbl_dailyreport";
+     $result = mysqli_query($this->con,$sql);
+     return mysqli_num_rows($result);
+    }
+
     public function Add_Issue(){
         $sql = "SELECT * FROM tbl_issue WHERE IsActive = 1 ORDER BY IssueName ASC";
         $arr = array();
@@ -58,37 +108,9 @@ class HomeModel extends DB
         }
         return json_encode($arr);
     }
-    public function getDate($date){
-        if ($date != null) {
-            $date = str_replace(" ","",$date);
-            $s = explode("-",$date);
-            $s1 = explode("/",$s[0]);
-            $s2 = explode("/",$s[1]);
-            $date1 = $s1['2'].'-'.$s1['1'].'-'.$s1['0'];
-            $date2 = $s2['2'].'-'.$s2['1'].'-'.$s2['0'];
-            $where = "WHERE dr.Date BETWEEN '".$date1." 00:00:00' AND '".$date2." 23:59:59'";
-        }else{
-            $where = '';
-        }
-        $sql = "SELECT dr.ID_Report,dr.EmpID,dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution FROM tbl_dailyreport dr 
-            join tbl_issue iss on iss.ID_Issue=dr.ID_Issue
-            join tbl_level lv on lv.ID_Level=dr.ID_Level
-            join tbl_status st on st.ID_Status=dr.ID_Status
-            join tbl_employee emp on emp.EmpID=dr.EmpID
-            join tbl_shiftname s on s.ShiftID=dr.ShiftID
-            ".$where;
-        $arr = array();
-        $row = mysqli_query($this->con,$sql);
-        while($rows = mysqli_fetch_array($row))
-        {
-            $arr[]= $rows;
-        }
-        return json_encode($arr);
-    }
-    
     public function selectType($id)
     {
-        $sql = "select Type from tbl_issue where ID_Issue = '$id' ";
+        $sql = "select Type from tbl_issue where ID_Issue = '$id' AND IsActive = 1 ";
         $res = mysqli_query($this->con, $sql);
         $arr = array();
         if(mysqli_num_rows($res)>0)
@@ -106,7 +128,7 @@ class HomeModel extends DB
     {
         $sql = "insert into tbl_dailyreport values(null,CURRENT_TIMESTAMP,'".$data['issue']."',
         '".$data['mc']."','".$data['level']."','".$data['status']."','".$data['shift']."',
-        '".$data['start']."','".$data['finish']."','".$data['issue']."',
+        '".$data['start']."','".$data['finish']."','".$data['total']."',
         '".$_SESSION['ID']."','".$data['note']."','".$data['reason']."',
         '".$data['solution']."',1)";
         $result = mysqli_query($this->con,$sql);
@@ -116,7 +138,7 @@ class HomeModel extends DB
 
     public function checkEdit($id)
     {
-        $sql = "select * from tbl_dailyreport where ID_Report = $id";
+        $sql = "select * from tbl_dailyreport where ID_Report = $id AND IsActive = 1";
         $res = mysqli_query($this->con,$sql);
         $arr = array();
         if(mysqli_num_rows($res)>0)
@@ -131,6 +153,25 @@ class HomeModel extends DB
         }
         return json_encode($arr);
     }
+
+    public function getName($idUser)
+    {
+        $sql = "select DisplayName from tbl_employee where EmpID = $idUser AND IsActive = 1";
+        $res = mysqli_query($this->con,$sql);
+        $arr = array();
+        if(mysqli_num_rows($res)>0)
+        {
+            while($row=  mysqli_fetch_assoc($res))
+            {
+                $arr[] = $row;
+                
+                
+            }
+            
+        }
+        return $arr;
+    }
+
     public function EditReportModel($data)
     {
         
