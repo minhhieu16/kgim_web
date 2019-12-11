@@ -1,6 +1,4 @@
-<?php
-    //var_dump($data['type']);
-?>
+
 <div class="row">
     <h2 align="center" style="color: blue">ADD NEW DAILY REPORT</h2>
     <div class="col-sm-8 add">
