@@ -33,7 +33,7 @@ class HomeModel extends DB
             $sub_array[] = $rows["Type"];
             $sub_array[] = $rows["Level"];
             $sub_array[] = $rows["Status"];
-            $sub_array[] = $rows["ShiftName"];
+            $sub_array[] = '<a style="font-weight:bold" class="green">'.$rows["ShiftName"].'</a>';
             $sub_array[] = $rows["Start"];
             $sub_array[] = $rows["Finished"];
             $sub_array[] = $rows["Total"];

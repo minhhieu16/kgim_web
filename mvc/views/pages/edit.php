@@ -4,6 +4,7 @@ $a = json_decode($data["OldReport"]);
 foreach ($a as $value) {
 
     ?>
+    <div class="container">
 <div class="row">
     <h2 align="center" style="color: blue">EDIT REPORT</h2>
     <div class="col-sm-8 add">
@@ -187,3 +188,4 @@ foreach ($a as $value) {
 <?php
 }
 ?>
+</div>

@@ -28,18 +28,18 @@
         <table id="order_data" class="table table-bordered table-striped display" cellpadding="0" width="100%">
             <thead>
                 <tr>
-                   <td>No</td>
-                   <td>Date</td>
+                   <td style="width: 1%">No</td>
+                   <td style="width: 2%">Date</td>
                    <td>List of Iusses</td>
-                   <td>MC#</td>
-                   <td>Level</td>
-                   <td>Status</td>
-                   <td>Shift</td>
+                   <td style="width: 1%">MC#</td>
+                   <td style="width: 1%">Level</td>
+                   <td style="width: 1%">Status</td>
+                   <td style="width: 1%">Shift</td>
                    <td>Start</td>
                    <td>Finish</td>
                    <td>Total</td>
                    <td>In charge</td>
-                   <td>Note</td>
+                   <td >Note</td>
                    <td>Reason</td>
                    <td>Solution</td>
                    <td>Edit</td>

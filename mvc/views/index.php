@@ -39,6 +39,15 @@
                 <a class="navbar-brand" href="index">KGIM</a>
             </div>
             <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-left">
+                
+                <li class="">
+                    
+                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> VENUES</a>
+                    <!-- /.dropdown-user -->
+                </li>
+                
+            </ul>
             <ul class="nav navbar-top-links navbar-right">
                 
                 <li class="dropdown">
@@ -61,7 +70,7 @@
             </ul>
             
 
-            <div class="navbar-default sidebar" role="navigation">
+            <!-- <div class="navbar-default sidebar" id="menu" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
@@ -72,23 +81,22 @@
                                 </li>
                                 
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         
                     </ul>
                 </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
+                
+            </div> -->
+            
         </nav>
-
-        <div id="page-wrapper">
+        <div class="content">
             <?php
                 include 'pages/'.$data["pages"].'.php'; 
                 
             ?>
-
         </div>
+        
         <div class="col-lg-12 bg-basic footer">
         <p align="center" style="margin-top: 20px;">© 2019 KGIM</p>
     </div>

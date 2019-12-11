@@ -165,8 +165,9 @@ function submitEditReport($form) {
             
             if(response=="success")
             {
-                $('#notice').html('<p style="color: green; text-align:center; font-weight: bold;font-size: 20px;">Edit successed!</p>');
-
+                //$('#notice').html('<p style="color: green; text-align:center; font-weight: bold;font-size: 20px;">Edit successed!</p>');
+                alert('Edit Success');
+                window.location="index.php";
             }
             else if(response=="failed")
             {
