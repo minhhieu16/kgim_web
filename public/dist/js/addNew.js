@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    $("#issue").change(function () {
-        var ID_Issue = $("#issue").val();
-		$.post("DailyReport/ajaxChooseType", {id: ID_Issue}, function(data){
-			$("#Type").html(data);
+  //   $("#issue").change(function () {
+  //       var ID_Issue = $("#issue").val();
+		// $.post("DailyReport/ajaxChooseType", {id: ID_Issue}, function(data){
+		// 	$("#Type").html(data);
 			
-		})
-    })
+		// })
+  //   })
 
     $("#finishID").change(function () {
         var start= $("#startID").val();
@@ -14,13 +14,16 @@ $(document).ready(function() {
 
             if(data=="failed")
             {   
-                $("#noticeTotal").html("<p style='color: red;'>TotalTime can not be nagative number!</p>")
+                $("#noticeTotal").html("<p style='color: red;'>TotalTime can not be nagative number!</p>");
+                $("#button-submit").html('<button type="submit" id="" class="btn btn-primary" disabled="">Add</button>');
+                $("#button-submit-edit").html('<button type="submit" id="" class="btn btn-primary" disabled="">Edit</button>');
             }
             else
             {   
                 $("#noticeTotal").html("");
                 $("#total12").html('<input type="text" class="form-control" id="total" name="total" value="'+data+'" disabled="">');
-
+                $("#button-submit").html('<button type="submit" id="" class="btn btn-primary">Add</button>');
+                $("#button-submit-edit").html('<button type="submit" id="" class="btn btn-primary">Edit</button>');
             }
         })
     })
@@ -31,13 +34,16 @@ $(document).ready(function() {
 
             if(data=="failed")
             {   
-                $("#noticeTotal").html("<p style='color: red;'>TotalTime can not be nagative number!</p>")
+                $("#noticeTotal").html("<p style='color: red;'>TotalTime can not be nagative number!</p>");
+                $("#button-submit").html('<button type="submit" id="" class="btn btn-primary" disabled="">Add</button>');
+                $("#button-submit-edit").html('<button type="submit" id="" class="btn btn-primary" disabled="">Edit</button>');
             }
             else
             {   
                 $("#noticeTotal").html("");
                 $("#total12").html('<input type="text" class="form-control" id="total" name="total" value="'+data+'" disabled="">');
-
+                $("#button-submit").html('<button type="submit" id="" class="btn btn-primary">Add</button>');
+                $("#button-submit-edit").html('<button type="submit" id="" class="btn btn-primary">Edit</button>');
             }
         })
     })

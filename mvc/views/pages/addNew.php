@@ -1,4 +1,6 @@
-
+<?php
+    //var_dump($data['type']);
+?>
 <div class="row">
     <h2 align="center" style="color: blue">ADD NEW DAILY REPORT</h2>
     <div class="col-sm-8 add">
@@ -10,7 +12,7 @@
             </div>
             <div class="col-lg-8">
                 <select class="form-control" id="issue" name="issue">
-                    <option>Choose Issue</option>
+                    <!-- /<option>Choose Issue</option> -->
                     <?php
                         $issue = json_decode($data["issue"]);
                         foreach ($issue as $val) {
@@ -28,7 +30,12 @@
             </div>
             <div class="col-lg-3">
                 <select class="form-control" id="Type" name="Type" required>
-                    <option></option>
+                    <?php
+                        $type = json_decode($data["type"]);
+                        foreach ($type as $val) {
+                            echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
+                        }
+                    ?>
                 </select>
             </div>
             <div class="col-lg-7">
@@ -130,10 +137,18 @@
         </div>
     </div>
   
+  <div class="row">
+    <div class="col-lg-1" id="button-submit">
+        <button type="submit" id="" class="btn btn-primary" disabled="">Add</button>
+    </div>
+    <div class="col-lg-1">
+        <a href="DailyReport/index" class="btn btn-danger" id="back">Back</a>
+    </div>
+  </div>
   
-  <button type="submit" id="" class="btn btn-primary">Add</button>
-  <a href="index.php" class="btn btn-danger" id="back">Back</a>
+  
   <div  style="text-align: center;" id="notice"></div>
+  
 </form>
     </div>
 </div>

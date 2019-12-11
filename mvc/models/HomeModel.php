@@ -14,13 +14,13 @@ class HomeModel extends DB
     public function getReport($where)
     {
         
-        $sql = "SELECT dr.ID_Report,dr.EmpID,dr.Date,iss.IssueName, dr.MC, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution,dr.IsActive FROM tbl_dailyreport dr 
+        $sql = "SELECT dr.ID_Report,dr.EmpID,dr.Date,iss.IssueName, lv.Level, st.Status, s.ShiftName,dr.Start, dr.Finished, dr.Total ,emp.DisplayName, dr.Note, dr.Reason,dr.Solution,dr.IsActive,dr.Type FROM tbl_dailyreport dr 
             join tbl_issue iss on iss.ID_Issue=dr.ID_Issue
             join tbl_level lv on lv.ID_Level=dr.ID_Level
             join tbl_status st on st.ID_Status=dr.ID_Status
             join tbl_employee emp on emp.EmpID=dr.EmpID
             join tbl_shiftname s on s.ShiftID=dr.ShiftID
-            WHERE dr.IsActive = 1 ".$where;
+            WHERE dr.IsActive = 1 ".$where." ORDER by dr.ID_Report DESC";
         $arr = array();
         $row = mysqli_query($this->con,$sql);
         $i = 1;
@@ -30,7 +30,7 @@ class HomeModel extends DB
             $sub_array[] = $i;
             $sub_array[] = date('d/m/y',strtotime($rows["Date"]));
             $sub_array[] = $rows["IssueName"];
-            $sub_array[] = $rows["MC"];
+            $sub_array[] = $rows["Type"];
             $sub_array[] = $rows["Level"];
             $sub_array[] = $rows["Status"];
             $sub_array[] = $rows["ShiftName"];
@@ -50,7 +50,7 @@ class HomeModel extends DB
         $output = array(
         "recordsTotal"  =>  $this->get_all_data(),
         "recordsFiltered" => $this->number_filter_row(),
-         "data"    => $arr
+        "data"    => $arr
         );
 
         return json_encode($output);
@@ -70,6 +70,16 @@ class HomeModel extends DB
 
     public function Add_Issue(){
         $sql = "SELECT * FROM tbl_issue WHERE IsActive = 1 ORDER BY IssueName ASC";
+        $arr = array();
+        $row = mysqli_query($this->con,$sql);
+        while($rows = mysqli_fetch_array($row))
+        {
+            $arr[]= $rows;
+        }
+        return json_encode($arr);
+    }
+    public function Add_Type(){
+        $sql = "SELECT * FROM tbl_type WHERE IsActive = 1 ORDER BY name_type ASC";
         $arr = array();
         $row = mysqli_query($this->con,$sql);
         while($rows = mysqli_fetch_array($row))
@@ -177,7 +187,7 @@ class HomeModel extends DB
         
 
         $sql ="UPDATE tbl_dailyreport 
-        SET ID_Issue = '".$data['issue']."' ,  MC = '".$data['mc']."',
+        SET ID_Issue = '".$data['issue']."' ,  Type = '".$data['mc']."',
             ID_Level = '".$data['level']."' ,  ID_Status = '".$data['status']."',
             ShiftID = '".$data['shift']."' ,  Start = '".$data['start']."',
             Finished = '".$data['finish']."' ,  Total = '".$data['total']."',

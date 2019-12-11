@@ -2,6 +2,7 @@
 
 $a = json_decode($data["OldReport"]);
 foreach ($a as $value) {
+
     ?>
 <div class="row">
     <h2 align="center" style="color: blue">EDIT REPORT</h2>
@@ -35,22 +36,34 @@ foreach ($a as $value) {
             <div class="col-lg-3">
                 <select class="form-control" id="Type" name="Type">
                     
-                    <?php
-                        echo $ab =(int)$value->MC;
-                        if($ab == 0)
-                        {
-                           
-                            echo "<option value='".$value->MC."'>".$value->MC."</option>";
+                   
+                        <?php
+                        $type = json_decode($data["type"]);
+
+                        foreach ($type as $val) {
+                            if (!is_numeric($value->Type)) {
+                                # char
+                                if($val->name_type == $value->Type)
+                                echo "<option value='".$val->name_type."' selected>".$val->name_type."</option>";
+                                else
+                                echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
+                            } else {
+                                // number
+                                if($val->name_type == 'MC')
+                                echo "<option value='".$val->name_type."' selected>".$val->name_type."</option>";
+                                else
+                                echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
+                            }
+                            
+
+                            
                         }
-                        else{
-                            echo "<option value='MC'>MC</option>";
-                        }
-                        
-                    ?>
+                        ?>
+                    
                 </select>
             </div>
             <div class="col-lg-7">
-                <input type="text" value="<?php  if((int)$value->MC!= 0) echo $value->MC; ?>" class="form-control" id="valMC" name="valMC" placeholder="MC">
+                <input type="text" value="<?php  if(is_numeric($value->Type)) echo $value->Type; ?>" class="form-control" id="valMC" name="valMC" placeholder="MC">
             </div>
         </div>
     </div>
@@ -132,7 +145,7 @@ foreach ($a as $value) {
                 <label for="uname">Note:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" id="note" name="note"><?php echo $value->Note; ?></textarea>
+               <textarea class="form-control" id="note" name="note" placeholder="Note"><?php echo $value->Note; ?></textarea>
             </div>
         </div>
     </div>
@@ -152,19 +165,25 @@ foreach ($a as $value) {
                 <label for="uname">Solution:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="solution" id="solution" ><?php echo $value->Reason; ?></textarea>
+               <textarea class="form-control" name="solution" id="solution" placeholder="Solution"><?php echo $value->Reason; ?></textarea>
             </div>
         </div>
     </div>
   
-   
-  <button type="submit" id="" class="btn btn-primary">Edit</button>
-  <a href="index.php" class="btn btn-danger" id="back">Back</a>
+
+    <div class="row">
+        <div class="col-lg-1" id="button-submit-edit">
+            <button type="submit" id="" class="btn btn-primary" >Edit</button>
+        </div>
+        <div class="col-lg-1">
+            <a href="DailyReport/index" class="btn btn-danger" id="back">Back</a>
+        </div>
+    </div>
+
   <div  style="text-align: center;" id="notice"></div>
 </form>
     </div>
 </div>
 <?php
 }
-
 ?>

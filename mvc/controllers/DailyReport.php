@@ -53,6 +53,7 @@ class DailyReport extends Controller
             "issue"=>$this->rep->Add_Issue(),
             "status"=>$this->rep->Add_Status(),
             "level"=>$this->rep->Add_Level(),
+            "type"=>$this->rep->Add_Type(),
             "shift"=>$this->rep->Add_Shift()]);
             
         }
@@ -157,6 +158,7 @@ class DailyReport extends Controller
                     "status"=>$this->rep->Add_Status(),
                     "level"=>$this->rep->Add_Level(),
                     "shift"=>$this->rep->Add_Shift(),
+                    "type"=>$this->rep->Add_Type(),
                     "SessionIdReport" => $id
                 ]);
 
@@ -192,7 +194,7 @@ class DailyReport extends Controller
                 if($this->rep->EditReportModel($data)==true){
                     echo "success";
                 }else{
-                    echo "faileds";
+                    echo "failed";
                 }
                 
             }

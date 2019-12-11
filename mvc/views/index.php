@@ -128,7 +128,8 @@
     <script type="text/javascript" src="public/vendor/datatables/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="public/vendor/datatables/js/buttons.print.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript" src="public/vendor/datatables/js/date-uk.js"></script> 
     <script type="text/javascript">
     $(function() {
 
@@ -164,6 +165,11 @@
     {
         var dataTable = $('#order_data').DataTable({
         dom: 'Bfrtip',
+        //aaSorting: [[1, "asc"]],
+        columnDefs: [
+           
+           { type: 'date-uk', targets: 1 }
+         ],
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ],
@@ -181,7 +187,8 @@
             deferRender: true,
             scrollCollapse: true,
             scroller: true,
-            destroy: true
+            destroy: true,
+
       });
     }
 </script>
