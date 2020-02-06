@@ -187,7 +187,7 @@ foreach ($a as $value) {
                 <label for="uname">Solution:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="solution" id="solution" rows="5" placeholder="Solution"><?php echo $value->Reason; ?></textarea>
+               <textarea class="form-control" name="solution" id="solution" rows="5" placeholder="Solution"><?php echo $value->Solution; ?></textarea>
             </div>
         </div>
     </div>
