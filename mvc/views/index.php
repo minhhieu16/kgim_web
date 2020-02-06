@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Daily Report - Vegas</title>
-    <base href="http://localhost:88/project/kgim/">
+    <base href="http://localhost/kgim_web/">
     <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="public/dist/css/sb-admin-2.css" rel="stylesheet">

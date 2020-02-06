@@ -4,7 +4,6 @@ $a = json_decode($data["OldReport"]);
 foreach ($a as $value) {
     #split array type
     $arrType = explode(" ", filter_var(trim($value->Type, " ")));
-    
     ?>
     <div class="container">
         <h2 align="left" style="color: blue">EDIT REPORT</h2>
@@ -38,13 +37,26 @@ foreach ($a as $value) {
                         foreach ($type as $val) {
                             if(count($arrType)>1)
                             {
-                                $sliced = array_slice($arrType, 0, -1);
-                                $stringType = implode(" ", $sliced);
+                                $stringType = "";
+                                foreach($arrType as $typeArrElement)
+                                {
+                                    if(is_numeric($typeArrElement))
+                                    {
+                                        settype($typeArrElement, "integer");
+                                    }
+                                    if(is_string($typeArrElement))
+                                    {
+                                        $stringType .=  $typeArrElement . " ";
+                                    }
+                                    
+                                }
+                                $stringType = rtrim($stringType, " ");
                                 if($val->name_type == $stringType)
-                                    echo "<option value='".$stringType."' selected>".$stringType."</option>";
+                                    
+                                    echo "<option value='".$val->name_type."' selected>".$val->name_type."</option>";
                                 else
                                     echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
-
+                                
                             }
                             else {
                                 if($val->name_type == $arrType[0])
@@ -78,7 +90,18 @@ foreach ($a as $value) {
             </div>
             <div class="col-lg-4">
                 <label for="type">MC:</label>
-                <input type="text" value="<?php  if(count($arrType) > 1) echo end($arrType);?>" class="form-control" id="valMC" name="valMC" placeholder="MC">
+                <input type="text" value="<?php  
+                // if(count($arrType) > 1) 
+                //     echo end($arrType);
+                foreach($arrType as $typeArrElement)
+                    {
+                        if(is_numeric($typeArrElement))
+                        {
+                            echo $typeArrElement . " ";
+                        }
+                    }
+                
+                ?>" class="form-control" id="valMC" name="valMC" placeholder="MC">
             </div>
         </div>
     </div>
