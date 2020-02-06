@@ -27,14 +27,14 @@
     <div  class="col-lg-12 table-responsive" id="rptContent" >
         <table id="order_data" class="table table-bordered table-striped display" cellpadding="0" width="100%">
             <thead>
-                <tr>
-                   <td style="width: 1%">No</td>
-                   <td style="width: 2%">Date</td>
+                <tr style="font-weight: bold;">
+                   <td>No</td>
+                   <td>Date</td>
                    <td>List of Iusses</td>
-                   <td style="width: 1%">MC#</td>
-                   <td style="width: 1%">Level</td>
-                   <td style="width: 1%">Status</td>
-                   <td style="width: 1%">Shift</td>
+                   <td>MC#</td>
+                   <td>Level</td>
+                   <td>Status</td>
+                   <td>Shift</td>
                    <td>Start</td>
                    <td>Finish</td>
                    <td>Total</td>

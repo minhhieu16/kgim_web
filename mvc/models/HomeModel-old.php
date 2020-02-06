@@ -136,21 +136,14 @@ class HomeModel extends DB
 
     public function addNewReportModel($data)
     {
-        // $sql = "insert into tbl_dailyreport values(null,CURRENT_TIMESTAMP,'".$data['issue']."',
-        // '".$data['mc']."','".$data['level']."','".$data['status']."','".$data['shift']."',
-        // '".$data['start']."','".$data['finish']."','".$data['total']."',
-        // '".$_SESSION['ID']."','".$data['note']."','".$data['reason']."',
-        // '".$data['solution']."',1)";
-        // $result = mysqli_query($this->con,$sql);
-        // return $result;
-        $sql1 = "insert into tbl_dailyreport values(null,CURRENT_TIMESTAMP,?,?,?,?,?,?,?,?,?,?,?,?,1)";
-        $stmt = mysqli_prepare($this->con,$sql1);
-        mysqli_stmt_bind_param($stmt,"isiiisssisss",$data['issue'],$data['mc'],$data['level'],
-                                                    $data['status'],$data['shift'],$data['start'],
-                                                    $data['finish'],$data['total'],$_SESSION['ID'],
-                                                    $data['note'],$data['reason'],$data['solution']);
-        $result = mysqli_stmt_execute($stmt);
+        $sql = "insert into tbl_dailyreport values(null,CURRENT_TIMESTAMP,'".$data['issue']."',
+        '".$data['mc']."','".$data['level']."','".$data['status']."','".$data['shift']."',
+        '".$data['start']."','".$data['finish']."','".$data['total']."',
+        '".$_SESSION['ID']."','".$data['note']."','".$data['reason']."',
+        '".$data['solution']."',1)";
+        $result = mysqli_query($this->con,$sql);
         return $result;
+        
     }
 
     public function checkEdit($id)
@@ -193,32 +186,16 @@ class HomeModel extends DB
     {
         
 
-        // $sql ="UPDATE tbl_dailyreport 
-        // SET ID_Issue = '".$data['issue']."' ,  Type = '".$data['mc']."',
-        //     ID_Level = '".$data['level']."' ,  ID_Status = '".$data['status']."',
-        //     ShiftID = '".$data['shift']."' ,  Start = '".$data['start']."',
-        //     Finished = '".$data['finish']."' ,  Total = '".$data['total']."',
-        //     Note = '".$data['note']."' ,  Reason = '".$data['reason']."',
-        //     Solution = '".$data['solution']."'
-        // WHERE ID_Report = '".$data['idReport']."'";
-        // $result = mysqli_query($this->con,$sql);
-        // return $result;
-
-        $sql1 = " UPDATE tbl_dailyreport SET 
-                ID_Issue = ?, Type = ? , ID_Level = ?,
-                ID_Status = ?, ShiftID= ?, Start=?,
-                Finished = ?, Total = ?, Note= ? ,
-                Reason = ? , Solution= ?
-            WHERE ID_Report = ?
-        ";
-        $stmt =  mysqli_prepare($this->con,$sql1);
-        mysqli_stmt_bind_param($stmt,"isiiissssssi",$data['issue'],$data['mc'],$data['level'],
-                                                    $data['status'],$data['shift'],$data['start'],
-                                                    $data['finish'],$data['total'],$data['note']
-                                                    ,$data['reason'],$data['solution'],$data['idReport']);
-        $result = mysqli_stmt_execute($stmt);
+        $sql ="UPDATE tbl_dailyreport 
+        SET ID_Issue = '".$data['issue']."' ,  Type = '".$data['mc']."',
+            ID_Level = '".$data['level']."' ,  ID_Status = '".$data['status']."',
+            ShiftID = '".$data['shift']."' ,  Start = '".$data['start']."',
+            Finished = '".$data['finish']."' ,  Total = '".$data['total']."',
+            Note = '".$data['note']."' ,  Reason = '".$data['reason']."',
+            Solution = '".$data['solution']."'
+        WHERE ID_Report = '".$data['idReport']."'";
+        $result = mysqli_query($this->con,$sql);
         return $result;
-
     }
 }
 

@@ -68,15 +68,15 @@ $(document).ready(function() {
         var note = $("#note").val();
         var reason = $("#reason").val();
         var solution = $("#solution").val();
-        var temp;
-        if(type == 'MC')
-        {
-            temp = valMC;
-        }
-        else
-        {
-            temp = type
-        }
+        var temp = type + " " + valMC;
+        // if(type == 'MC' || type == 'Slot' || type == 'Roulette')
+        // {
+        //     temp = valMC;
+        // }
+        // else
+        // {
+        //     temp = type
+        // }
 
         $.ajax({
             url: $form.attr('action'),
@@ -134,15 +134,8 @@ function submitEditReport($form) {
     var note = $("#note").val();
     var reason = $("#reason").val();
     var solution = $("#solution").val();
-    var temp;
-    if(type == 'MC')
-    {
-        temp = valMC;
-    }
-    else
-    {
-        temp = type
-    }
+    var temp = type + " " + valMC;
+    
 
     $.ajax({
         url: $form.attr('action'),

@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Daily Report - Vegas</title>
-    <base href="http://localhost:88/kgim/">
+    <base href="http://localhost:88/project/kgim/">
     <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="public/dist/css/sb-admin-2.css" rel="stylesheet">
@@ -29,25 +29,28 @@
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
+            <a href="DailyReport/index" class="nav navbar-left">
+                <img src="public/images/logo.png" width="250px" height="80px">
+            </a>
+            <div class="navbar-header" style="padding-top: 10px;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index">KGIM</a>
+                <a class="navbar-brand" href="index">VEGAS</a>
             </div>
+            
             <!-- /.navbar-header -->
-            <ul class="nav navbar-top-links navbar-left">
-                
-                <li class="">
-                    
-                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> VENUES</a>
-                    <!-- /.dropdown-user -->
+<!--             <ul class="nav navbar-top-links navbar-left">
+                <li class="">    
+                    <a href="DailyReport/index">
+                        <img src="public/images/logo.png" width="120px" height="50px">
+                    </a>
                 </li>
                 
-            </ul>
+            </ul> -->
             <ul class="nav navbar-top-links navbar-right">
                 
                 <li class="dropdown">
@@ -175,9 +178,20 @@
         dom: 'Bfrtip',
         //aaSorting: [[1, "asc"]],
         columnDefs: [
-           
-           { type: 'date-uk', targets: 1 }
-         ],
+        {
+            type: 'date-uk', targets: 1
+        },
+        {
+            targets: [0,1,2,3,4,5,6,7,8,9,10],
+            className: 'dt-center' 
+        },
+        {   width: '5px', targets: [0,6,7,8,9] },
+        {   width: '200px', targets: 2 }, // cột list
+        {   width: '200px', targets: 11 },
+        {   width: '200px', targets: 12 },
+        {   width: '200px', targets: 13 },
+        
+        ],
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ],

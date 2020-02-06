@@ -1,32 +1,35 @@
+<div class="container style-add">
+
+<h2 align="left" style="color: blue">ADD NEW DAILY REPORT</h2>
 
 <div class="row">
-    <h2 align="center" style="color: blue">ADD NEW DAILY REPORT</h2>
+    
     <div class="col-sm-8 add">
         <form class="was-validated" method="post" id="formAdd" action="DailyReport/addNewReport">
     <div class="form-group">
         <div class="row">
             <div class="col-lg-4">
                 <label for="issue">List of Issue:</label>
-            </div>
-            <div class="col-lg-8">
                 <select class="form-control" id="issue" name="issue">
                     <!-- /<option>Choose Issue</option> -->
                     <?php
+                        // Others nằm cuối danh sách
                         $issue = json_decode($data["issue"]);
                         foreach ($issue as $val) {
-                            echo "<option value='".$val->ID_Issue."'>".$val->IssueName."</option>";
+                            if ($val->IssueName != 'Others') {
+                                echo "<option value='".$val->ID_Issue."'>".$val->IssueName."</option>";
+                            }
+                        }
+                        foreach ($issue as $val) {
+                            if ($val->IssueName == 'Others') {
+                                echo "<option value='".$val->ID_Issue."'>".$val->IssueName."</option>";
+                            }
                         }
                     ?>
                 </select>
             </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <label for="type">Type:</label>
-            </div>
-            <div class="col-lg-3">
                 <select class="form-control" id="Type" name="Type" required>
                     <?php
                         $type = json_decode($data["type"]);
@@ -36,11 +39,14 @@
                     ?>
                 </select>
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-4">
+                <label for="type">MC:</label>
                 <input type="text" class="form-control" id="valMC" name="valMC" placeholder="MC">
             </div>
         </div>
+        
     </div>
+
     <div class="form-group">
         <div class="row">
             <div class="col-lg-4">
@@ -110,7 +116,7 @@
                 <label for="uname">Note:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" id="note" name="note" placeholder="Note"></textarea>
+               <textarea class="form-control" id="note" name="note" rows="5" placeholder="Note"></textarea>
             </div>
         </div>
     </div>
@@ -120,7 +126,7 @@
                 <label for="uname">Reason:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="reason" id="reason" placeholder="Reason"></textarea>
+               <textarea class="form-control" name="reason" rows="5" id="reason" placeholder="Reason"></textarea>
             </div>
         </div>
     </div>
@@ -130,7 +136,7 @@
                 <label for="uname">Solution:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="solution" id="solution" placeholder="Solution"></textarea>
+               <textarea class="form-control" name="solution" rows="5" id="solution" placeholder="Solution"></textarea>
             </div>
         </div>
     </div>
@@ -149,4 +155,6 @@
   
 </form>
     </div>
+</div>
+    
 </div>

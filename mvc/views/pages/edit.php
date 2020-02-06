@@ -2,19 +2,21 @@
 
 $a = json_decode($data["OldReport"]);
 foreach ($a as $value) {
-
+    #split array type
+    $arrType = explode(" ", filter_var(trim($value->Type, " ")));
+    
     ?>
     <div class="container">
+        <h2 align="left" style="color: blue">EDIT REPORT</h2>
 <div class="row">
-    <h2 align="center" style="color: blue">EDIT REPORT</h2>
+    
     <div class="col-sm-8 add">
         <form class="was-validated" method="post" id="formEdit" action="DailyReport/EditReport/<?php echo $data["SessionIdReport"]; ?>">
     <div class="form-group">
         <div class="row">
+            
             <div class="col-lg-4">
                 <label for="issue">List of Issue:</label>
-            </div>
-            <div class="col-lg-8">
                 <select class="form-control" id="issue" name="issue">
                     <?php
                         $issue = json_decode($data["issue"]);
@@ -27,34 +29,45 @@ foreach ($a as $value) {
                     ?>
                 </select>
             </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <label for="type">Type:</label>
-            </div>
-            <div class="col-lg-3">
                 <select class="form-control" id="Type" name="Type">
-                    
-                   
                         <?php
                         $type = json_decode($data["type"]);
-
+                        
                         foreach ($type as $val) {
-                            if (!is_numeric($value->Type)) {
-                                # char
-                                if($val->name_type == $value->Type)
-                                echo "<option value='".$val->name_type."' selected>".$val->name_type."</option>";
+                            if(count($arrType)>1)
+                            {
+                                $sliced = array_slice($arrType, 0, -1);
+                                $stringType = implode(" ", $sliced);
+                                if($val->name_type == $stringType)
+                                    echo "<option value='".$stringType."' selected>".$stringType."</option>";
                                 else
-                                echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
-                            } else {
-                                // number
-                                if($val->name_type == 'MC')
-                                echo "<option value='".$val->name_type."' selected>".$val->name_type."</option>";
-                                else
-                                echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
+                                    echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
+
                             }
+                            else {
+                                if($val->name_type == $arrType[0])
+                                    echo "<option value='".$arrType[0]."' selected>".$arrType[0]."</option>";
+                                else
+                                    echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
+                            }
+                                
+                            
+                            #-----------------------------#
+                            // if (!is_numeric($value->Type)) {
+                            //     # char
+                            //     if($val->name_type == $value->Type)
+                            //     echo "<option value='".$val->name_type."' selected>".$val->name_type."</option>";
+                            //     else
+                            //     echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
+                            // } else {
+                            //     // number
+                            //     if($val->name_type == 'MC' || $val->name_type == 'Slot' || $val->name_type == 'Roulette')
+                            //     echo "<option value='".$val->name_type."' selected>".$val->name_type."</option>";
+                            //     else
+                            //     echo "<option value='".$val->name_type."'>".$val->name_type."</option>";
+                            // }
                             
 
                             
@@ -63,9 +76,17 @@ foreach ($a as $value) {
                     
                 </select>
             </div>
-            <div class="col-lg-7">
-                <input type="text" value="<?php  if(is_numeric($value->Type)) echo $value->Type; ?>" class="form-control" id="valMC" name="valMC" placeholder="MC">
+            <div class="col-lg-4">
+                <label for="type">MC:</label>
+                <input type="text" value="<?php  if(count($arrType) > 1) echo end($arrType);?>" class="form-control" id="valMC" name="valMC" placeholder="MC">
             </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            
+
+
         </div>
     </div>
     <div class="form-group">
@@ -146,7 +167,7 @@ foreach ($a as $value) {
                 <label for="uname">Note:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" id="note" name="note" placeholder="Note"><?php echo $value->Note; ?></textarea>
+               <textarea class="form-control" id="note" name="note" rows="5" placeholder="Note"><?php echo $value->Note; ?></textarea>
             </div>
         </div>
     </div>
@@ -156,7 +177,7 @@ foreach ($a as $value) {
                 <label for="uname">Reason:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="reason" id="reason" placeholder="Reason"><?php echo $value->Reason; ?></textarea>
+               <textarea class="form-control" name="reason" id="reason" rows="5" placeholder="Reason"><?php echo $value->Reason; ?></textarea>
             </div>
         </div>
     </div>
@@ -166,7 +187,7 @@ foreach ($a as $value) {
                 <label for="uname">Solution:</label>
             </div>
             <div class="col-lg-8">
-               <textarea class="form-control" name="solution" id="solution" placeholder="Solution"><?php echo $value->Reason; ?></textarea>
+               <textarea class="form-control" name="solution" id="solution" rows="5" placeholder="Solution"><?php echo $value->Reason; ?></textarea>
             </div>
         </div>
     </div>
